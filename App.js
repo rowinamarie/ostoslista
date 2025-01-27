@@ -1,11 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { FlatList, TouchableOpacity, StyleSheet, Text, View, TouchableWithoutFeedback, TextInput } from 'react-native';
 
 export default function App() {
 
-const [product, setProduct] = useState ("");
-const [historys, setHistorys] = useState([]);
+  const [product, setProduct] = useState("");
+  const [historys, setHistorys] = useState([]);
+
+
+  const Painike = ({ onPress, title }) => (
+    <TouchableOpacity onPress={onPress} style={styles.buttonContainer}>
+      <Text style={styles.buttonText}>{title}</Text>
+    </TouchableOpacity>
+  );
+
+  const addPressed = () => {
+    setHistorys(prevHistorys => [...prevHistorys, { key: product }]);
+  };
+
+  const removePressed = () => {
+    setHistorys(prevHistorys => [...prevHistorys, { key: product }]);
+  };
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -19,7 +34,19 @@ const [historys, setHistorys] = useState([]);
             style={styles.input}
           />
 
+          <View style={styles.buttons}>
+            <Painike onPress={addPressed} title="Add" />
+            <Painike onPress={removePressed} title="remove" />
+          </View>
+
         </View>
+
+
+        <FlatList
+          data={historys}
+          renderItem={({ item }) => <Text>{item.key}</Text>}
+        />
+
       </View>
     </TouchableWithoutFeedback>
   );
