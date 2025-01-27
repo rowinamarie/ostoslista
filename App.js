@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { FlatList, TouchableOpacity, StyleSheet, Text, View, TouchableWithoutFeedback, TextInput } from 'react-native';
+import { FlatList, TouchableOpacity, StyleSheet, Keyboard, Text, View, TouchableWithoutFeedback, TextInput } from 'react-native';
 
 export default function App() {
 
@@ -18,8 +18,8 @@ export default function App() {
     setHistorys(prevHistorys => [...prevHistorys, { key: product }]);
   };
 
-  const removePressed = () => {
-    setHistorys(prevHistorys => [...prevHistorys, { key: product }]);
+  const clearPressed = () => {
+    setHistorys([]);
   };
 
   return (
@@ -36,7 +36,7 @@ export default function App() {
 
           <View style={styles.buttons}>
             <Painike onPress={addPressed} title="Add" />
-            <Painike onPress={removePressed} title="remove" />
+            <Painike onPress={clearPressed} title="Clear" />
           </View>
 
         </View>
