@@ -38,10 +38,9 @@ export default function App() {
             <Painike onPress={addPressed} title="Add" />
             <Painike onPress={clearPressed} title="Clear" />
           </View>
-
         </View>
 
-
+<Text> Shopping list: </Text>
         <FlatList
           data={historys}
           renderItem={({ item }) => <Text>{item.key}</Text>}
